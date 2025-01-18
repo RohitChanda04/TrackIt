@@ -10,6 +10,8 @@ import DateRangeQuery from "./components/DateRangeQuery";
 function App() {
   const [searchField, setSearchField] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
 
   return (
     <>
@@ -40,6 +42,10 @@ function App() {
               setSearchField={setSearchField}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
+              from={from}
+              setFrom={setFrom}
+              to={to}
+              setTo={setTo}
             />
           </li>
         </ul>
@@ -61,6 +67,8 @@ function App() {
         <JobApplicationTable
           searchField={searchField}
           searchValue={searchValue}
+          from={from}
+          to={to}
         />
       </div>
     </>

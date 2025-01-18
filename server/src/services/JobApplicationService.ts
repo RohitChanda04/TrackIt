@@ -10,14 +10,15 @@ const getAllJobApplications = async () => {
 // Fetches all the job applications matching the specified parameter from the Repository layer
 const getAllJobApplicationsByParameter = async (
   searchField: string,
-  searchValue: string
+  searchValue: string,
+  from: string,
+  to: string
 ) => {
-  console.log("SERVICE...............");
-  console.log("field: " + searchField);
-  console.log("value: " + searchValue);
   return await jobApplicationRepo.findAllJobApplicationsByParameter(
     searchField,
-    searchValue
+    searchValue,
+    from,
+    to
   );
 };
 
