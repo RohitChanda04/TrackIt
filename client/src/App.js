@@ -5,6 +5,7 @@ import JobApplicationTable from "./components/JobApplicationTable";
 import AddModal from "./components/AddModal";
 import Search from "./components/Search";
 import { useState } from "react";
+import DateRangeQuery from "./components/DateRangeQuery";
 
 function App() {
   const [searchField, setSearchField] = useState("");
@@ -27,6 +28,14 @@ function App() {
           </li>
           <li style={{ marginLeft: "10px" }}>
             <Search
+              searchField={searchField}
+              setSearchField={setSearchField}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
+          </li>
+          <li style={{ marginLeft: "308px" }}>
+            <DateRangeQuery
               searchField={searchField}
               setSearchField={setSearchField}
               searchValue={searchValue}

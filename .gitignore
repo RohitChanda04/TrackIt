@@ -1,2 +1,3 @@
 server/src/config/db.ts
 /.env
+/client/node_modules/.cache/
