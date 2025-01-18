@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 
-const DateRangeQuery = ({
-  searchField,
-  setSearchField,
-  searchValue,
-  setSearchValue,
-}) => {
-  const [currentSearchField, setCurrentSearchField] = useState("");
-  const [currentSearchValue, setCurrentSearchValue] = useState("");
+const DateRangeQuery = ({ from, setFrom, to, setTo }) => {
+  const [currentFrom, setCurrentFrom] = useState("");
+  const [currentTo, setCurrentTo] = useState("");
 
   const handleSearch = () => {
-    setSearchField(currentSearchField);
-    setSearchValue(currentSearchValue);
+    setFrom(currentFrom);
+    setTo(currentTo);
   };
 
   return (
@@ -24,9 +19,9 @@ const DateRangeQuery = ({
           type="date"
           className="form-control mr-2"
           placeholder="Enter Search Parameter"
-          name="searchValue"
-          value={currentSearchValue}
-          onChange={(e) => setCurrentSearchValue(e.target.value)}
+          name="from"
+          value={currentFrom}
+          onChange={(e) => setCurrentFrom(e.target.value)}
         />
         <label
           style={{ color: "white", paddingLeft: "1px", paddingRight: "5px" }}
@@ -37,9 +32,9 @@ const DateRangeQuery = ({
           type="date"
           className="form-control mr-2"
           placeholder="Enter Search Parameter"
-          name="searchValue"
-          value={currentSearchValue}
-          onChange={(e) => setCurrentSearchValue(e.target.value)}
+          name="to"
+          value={currentTo}
+          onChange={(e) => setCurrentTo(e.target.value)}
         />
         <button
           type="button"

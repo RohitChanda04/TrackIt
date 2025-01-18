@@ -6,7 +6,7 @@ import {
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 
-const JobApplicationTable = ({ searchField, searchValue }) => {
+const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
   const [applications, setApplications] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState(null);
   // eslint-disable-next-line
@@ -18,7 +18,18 @@ const JobApplicationTable = ({ searchField, searchValue }) => {
         let data;
 
         if (searchField && searchValue)
-          data = await getAllApplicationsByParameter(searchField, searchValue);
+          data = await getAllApplicationsByParameter(
+            searchField,
+            searchValue,
+            null,
+            null
+          );
+        else if (from && to)
+          data = await getAllApplicationsByParameter(null, null, from, to);
+        else if (from)
+          data = await getAllApplicationsByParameter(null, null, from, null);
+        else if (to)
+          data = await getAllApplicationsByParameter(null, null, null, to);
         else data = await getAllApplications();
 
         setApplications(data);
@@ -31,7 +42,7 @@ const JobApplicationTable = ({ searchField, searchValue }) => {
     };
 
     fetchApplications();
-  }, [searchField, searchValue]);
+  }, [searchField, searchValue, from, to]);
 
   function handleEditClick(application) {
     setSelectedApplication(application);

@@ -6,7 +6,6 @@ const jobApplicationService = require("../services/JobApplicationService");
 // Forwards request to the Service layer to fetch all job applications
 const getApplications = async (req: Request, res: Response) => {
   try {
-    console.log("CONTROLLER get all...............");
     const applications = await jobApplicationService.getAllJobApplications();
     res.status(200).json(applications);
   } catch (error) {
@@ -17,19 +16,16 @@ const getApplications = async (req: Request, res: Response) => {
 
 // Forwards request to the Service layer to fetch all job applications matching specified parameter
 const getApplicationsByParameter = async (req: Request, res: Response) => {
-  const { searchField, searchValue } = req.query;
+  const { searchField, searchValue, from, to } = req.query;
+  console.log("from..... :: " + from);
 
   try {
-    if (!searchField || !searchValue) {
-      return res
-        .status(400)
-        .json({ error: "Missing searchField or searchValue" });
-    }
-
     const applications =
       await jobApplicationService.getAllJobApplicationsByParameter(
         searchField,
-        searchValue
+        searchValue,
+        from,
+        to
       );
     res.status(200).json(applications);
   } catch (error) {

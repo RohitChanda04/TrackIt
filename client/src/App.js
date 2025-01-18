@@ -5,10 +5,13 @@ import JobApplicationTable from "./components/JobApplicationTable";
 import AddModal from "./components/AddModal";
 import Search from "./components/Search";
 import { useState } from "react";
+import DateRangeQuery from "./components/DateRangeQuery";
 
 function App() {
   const [searchField, setSearchField] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
 
   return (
     <>
@@ -33,6 +36,14 @@ function App() {
               setSearchValue={setSearchValue}
             />
           </li>
+          <li style={{ marginLeft: "308px" }}>
+            <DateRangeQuery
+              from={from}
+              setFrom={setFrom}
+              to={to}
+              setTo={setTo}
+            />
+          </li>
         </ul>
       </nav>
 
@@ -52,6 +63,8 @@ function App() {
         <JobApplicationTable
           searchField={searchField}
           searchValue={searchValue}
+          from={from}
+          to={to}
         />
       </div>
     </>

@@ -12,11 +12,20 @@ const findAllJobApplications = async () => {
 // Fetches job applications with the specified parameter
 const findAllJobApplicationsByParameter = async (
   searchField: string,
-  searchValue: string
+  searchValue: string,
+  from: string,
+  to: string
 ) => {
-  let whereClause;
+  let whereClause: Record<string, any> = {};
 
-  if (searchField !== "date") {
+  // Handling date range queries
+  if (from && to) {
+    whereClause.date = { [Op.between]: [from, to] }; // Range query between 'from' and 'to'
+  } else if (from) {
+    whereClause.date = { [Op.gte]: from }; // Greater than or equal to 'from'
+  } else if (to) {
+    whereClause.date = { [Op.lte]: to }; // Less than or equal to 'to'
+  } else if (searchField !== "date") {
     whereClause = {
       [searchField]: { [Op.like]: `%${searchValue}%` }, // Partial match for the selected field
     };

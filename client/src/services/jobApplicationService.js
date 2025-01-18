@@ -13,11 +13,13 @@ export const getAllApplications = async () => {
 
 export const getAllApplicationsByParameter = async (
   searchField,
-  searchValue
+  searchValue,
+  from,
+  to
 ) => {
   try {
     const response = await axios.get(`${API_URL}/search`, {
-      params: { searchField, searchValue },
+      params: { searchField, searchValue, from, to },
     });
     return response.data;
   } catch (error) {
