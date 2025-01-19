@@ -6,6 +6,11 @@ import {
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 
+const formatDate = (date) => {
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  return new Date(date).toLocaleDateString("en-US", options); // MM/DD/YYYY
+};
+
 const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
   const [applications, setApplications] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState(null);
@@ -32,7 +37,14 @@ const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
           data = await getAllApplicationsByParameter(null, null, null, to);
         else data = await getAllApplications();
 
-        setApplications(data);
+        // Format date before sending to frontend
+        const formattedApplications = data.map((application) => ({
+          ...application,
+          date: formatDate(application.date),
+        }));
+
+        // setApplications(data);
+        setApplications(formattedApplications);
       } catch (error) {
         console.log(
           "Error fetching applications from React Service layer..",
