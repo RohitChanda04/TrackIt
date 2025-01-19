@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Search = ({
   searchField,
@@ -14,6 +14,10 @@ const Search = ({
     setSearchValue(currentSearchValue);
   };
 
+  useEffect(() => {
+    setCurrentSearchValue("");
+  }, [currentSearchField]);
+
   return (
     <>
       <form className="form-inline">
@@ -22,7 +26,7 @@ const Search = ({
           value={currentSearchField}
           onChange={(e) => setCurrentSearchField(e.target.value)}
         >
-          <option value={""}>Select Search Parameter</option>
+          <option value={""}>Select Search Field</option>
           <option value={"company"}>Company</option>
           <option value={"role"}>Role</option>
           <option value={"location"}>Location</option>
@@ -37,6 +41,7 @@ const Search = ({
           name="searchValue"
           value={currentSearchValue}
           onChange={(e) => setCurrentSearchValue(e.target.value)}
+          style={{ width: "240px" }}
         />
         <button
           type="button"
