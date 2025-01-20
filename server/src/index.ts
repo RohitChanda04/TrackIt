@@ -13,7 +13,7 @@ app.use(express.json());
 // Routes
 app.use("/applications", router);
 
-// Starting the server on port 3002
+// Starting the server on the port
 const PORT = process.env.PORT;
 
 const startServer = async () => {
