@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   getAllApplications,
   getAllApplicationsByParameter,
@@ -7,11 +7,22 @@ import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 
 const formatDate = (date) => {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "UTC",
+  };
   return new Date(date).toLocaleDateString("en-US", options); // MM/DD/YYYY
 };
 
-const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
+const JobApplicationTable = ({
+  searchField,
+  searchValue,
+  from,
+  to,
+  sortBy,
+}) => {
   const [applications, setApplications] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState(null);
   // eslint-disable-next-line
@@ -29,8 +40,12 @@ const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
             null,
             null
           );
-        else if (from && to)
+        else if (from && to) {
+          console.log(from);
+          console.log(to);
           data = await getAllApplicationsByParameter(null, null, from, to);
+        }
+        // data = await getAllApplicationsByParameter(null, null, from, to);
         else if (from)
           data = await getAllApplicationsByParameter(null, null, from, null);
         else if (to)
@@ -55,6 +70,27 @@ const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
 
     fetchApplications();
   }, [searchField, searchValue, from, to]);
+
+  // Sort the applications based on sortBy state
+  const sortedApplications = useMemo(() => {
+    if (sortBy === "default") {
+      return [...applications]; // Default: Latest to oldest (already fetched this way)
+    } else if (sortBy === "date-oldest") {
+      return [...applications].sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
+    } else if (sortBy === "company-asc") {
+      return [...applications].sort((a, b) =>
+        a.company.localeCompare(b.company)
+      );
+    } else if (sortBy === "company-desc") {
+      return [...applications].sort((a, b) =>
+        b.company.localeCompare(a.company)
+      );
+    }
+    console.log(sortBy);
+    return applications;
+  }, [applications, sortBy]);
 
   function handleEditClick(application) {
     setSelectedApplication(application);
@@ -183,7 +219,7 @@ const JobApplicationTable = ({ searchField, searchValue, from, to }) => {
               </tr>
             </thead>
             <tbody>
-              {applications.map((application) => (
+              {sortedApplications.map((application) => (
                 <tr key={application.id} class="table-info">
                   <td>{application.company}</td>
                   <td>{application.role}</td>

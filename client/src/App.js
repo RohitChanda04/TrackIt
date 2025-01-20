@@ -6,12 +6,14 @@ import AddModal from "./components/AddModal";
 import Search from "./components/Search";
 import { useState } from "react";
 import DateRangeQuery from "./components/DateRangeQuery";
+import Sort from "./components/Sort";
 
 function App() {
   const [searchField, setSearchField] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [sortBy, setSortBy] = useState("default");
 
   return (
     <>
@@ -36,7 +38,10 @@ function App() {
               setSearchValue={setSearchValue}
             />
           </li>
-          <li style={{ marginLeft: "308px" }}>
+          <li style={{ marginLeft: "50px" }}>
+            <Sort sortBy={sortBy} setSortBy={setSortBy} />
+          </li>
+          <li style={{ marginLeft: "50px" }}>
             <DateRangeQuery
               searchField={searchField}
               setSearchField={setSearchField}
@@ -69,6 +74,8 @@ function App() {
           searchValue={searchValue}
           from={from}
           to={to}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
         />
       </div>
     </>
