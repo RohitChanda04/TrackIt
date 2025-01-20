@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/applications", router);
 
 // Starting the server on the port
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 const startServer = async () => {
   try {

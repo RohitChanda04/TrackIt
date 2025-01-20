@@ -4,14 +4,28 @@ import * as dotenv from "dotenv";
 // Loading .env file from the project root
 dotenv.config({ path: "../.env" });
 
-const user = process.env.DB_USER as string;
-const password = process.env.DB_PASSWORD as string;
+// const user = process.env.DB_USER as string;
+// const password = process.env.DB_PASSWORD as string;
 
 // Database configuration
-const sequelize = new Sequelize("job_tracker_app_db", user, password, {
-  host: "localhost",
+// const sequelize = new Sequelize("job_tracker_app_db", user, password, {
+//   host: "localhost",
+//   dialect: "postgres",
+//   logging: false,
+// });
+
+const database_url = process.env.DATABASE_URL as string;
+
+// Use the External Database URL from Render
+const sequelize = new Sequelize(database_url, {
   dialect: "postgres",
-  logging: false,
+  dialectOptions: {
+    ssl: {
+      require: true, // Ensure SSL connection (Render requires SSL)
+      rejectUnauthorized: false, // To handle self-signed certificates from Render
+    },
+  },
+  logging: false, // Optional: Turn off logging if not needed
 });
 
 // Testing the connection
