@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // const API_URL = "http://localhost:3002/applications";
-const API_URL = "https://trackit-412l.onrender.com/applications";
+// const API_URL = "https://trackit-412l.onrender.com/applications";
+const API_URL = "https://trackit-backend-ih51.onrender.com/applications";
 
 export const getAllApplications = async () => {
   try {
