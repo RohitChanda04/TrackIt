@@ -5,7 +5,7 @@ import JobApplication from "../models/JobApplication";
 const findAllJobApplications = async () => {
   return await JobApplication.findAll({
     attributes: { exclude: ["createdAt", "updatedAt"] },
-    order: [["id", "DESC"]],
+    order: [["date", "DESC"]],
   });
 };
 
