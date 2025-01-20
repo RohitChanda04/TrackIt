@@ -1,6 +1,6 @@
 import express = require("express");
 const cors = require("cors");
-const router = require("../src/routes/JobApplicationRoutes");
+const router = require("./routes/JobApplicationRoutes");
 import sequelize from "../src/config/db";
 
 // Initializing the Express app
