@@ -25,7 +25,7 @@ Following are the features present in the current MVP :-
 • **Fetch** applications on a **date range**
 
 ## Tech Stack
-The entire application is built on ```PERN Stack```and below are the technical details of the application :-
+The entire application is built on ```PERN Stack``` and below are the technical details of the application :-
 
 • Environment - Node.js
 
