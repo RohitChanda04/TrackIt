@@ -13,11 +13,16 @@ This made me wonder what if there were a platform where the candidates could not
 
 ## Features
 Following are the features present in the current MVP :-
+
 • **Add** an application
+
 • **Edit** an application
+
 • **Delete** an application
+
 • **Search** applications based on a **search field** and **search value**
-• Fetch applications on a **date range**
+
+• **Fetch** applications on a **date range**
 
 ## Tech Stack
 The entire application is built on ```PERN Stack```and below are the technical details of the application :-
