@@ -28,10 +28,15 @@ Following are the features present in the current MVP :-
 The entire application is built on ```PERN Stack```and below are the technical details of the application :-
 
 • Environment - Node.js
+
 • Backend Language - TypeScript
+
 • Backend Framework - Express.js
+
 • Database - PostgresQL (Intially started off with local setup using ```PLSQL CLI``` and then migrated to ```Render PostgreSQL``` while deploying)
+
 • ORM - Sequelize
+
 • Frontend Framework - React.js
 
 ## Current MVP
