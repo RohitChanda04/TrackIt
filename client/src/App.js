@@ -21,7 +21,14 @@ function App() {
         class="navbar navbar-expand-sm navbar-dark"
         style={{ background: "#0a3d3f" }}
       >
-        <a class="navbar-brand" href="App.js">
+        <a
+          class="navbar-brand"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.reload();
+          }}
+        >
           <div className="ml-5 mr-2">
             <h5>Applications</h5>
           </div>
